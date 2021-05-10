@@ -15,7 +15,7 @@ function App() {
         onInit={(typewriter) => {
           typewriter
             .changeDelay(200)
-            .typeString("como")
+            .typeString("comu")
             .pauseFor(400)
             .deleteChars(1)
             .changeDelay(200)
