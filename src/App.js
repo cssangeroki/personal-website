@@ -1,9 +1,11 @@
 import Typewriter from "typewriter-effect";
 import "./App.css";
 
+import { isMobile } from "react-device-detect";
+
 function App() {
   return (
-    <div>
+    <div className={isMobile ? "App App-mobile" : "App"}>
       <Typewriter
         // options={{
         //   strings: ["coming", "soon"],
