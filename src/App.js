@@ -1,44 +1,18 @@
-import Typewriter from "typewriter-effect";
 import "./App.css";
-
-import { isMobile } from "react-device-detect";
+import Navbar from "./components/Navbar/Navbar";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Content from "./components/Content";
 
 function App() {
   return (
-    <div className={isMobile ? "App App-mobile" : "App"}>
-      <Typewriter
-        // options={{
-        //   strings: ["coming", "soon"],
-        //   autoStart: true,
-        //   loop: true,
-        //   deleteSpeed: 200,
-        //   delay: 400,
-        // }}
-        onInit={(typewriter) => {
-          typewriter
-            .changeDelay(200)
-            .typeString("comu")
-            .pauseFor(400)
-            .deleteChars(1)
-            .changeDelay(200)
-            .typeString("ingh soo")
-            .pauseFor(200)
-            .deleteChars(5)
-            .changeDelay(100)
-            .typeString(" aion")
-            .pauseFor(300)
-            .deleteAll()
-            .changeDelay(30)
-            .typeString("ASDHKAJSHDZ")
-            .deleteAll()
-            .pauseFor(1000)
-            .changeDelay(90)
-            .typeString("coming")
-            .changeDelay(300)
-            .typeString(" soon")
-            .start();
-        }}
-      />
+    <div>
+      <Router>
+        <Navbar />
+        <Switch>
+          <Route path="/" />
+        </Switch>
+      </Router>
+      <Content />
     </div>
   );
 }
