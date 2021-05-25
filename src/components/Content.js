@@ -1,9 +1,17 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./Content.css";
 import Typewriter from "typewriter-effect";
 import { isMobile } from "react-device-detect";
 
 function Content(props) {
+  const [offsetY, setOffsetY] = useState(0);
+  const handleScroll = () => setOffsetY(window.pageYOffset);
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <div>
       <div
@@ -45,6 +53,7 @@ function Content(props) {
           className={
             isMobile ? "picture-dark picture-dark-mobile" : "picture-dark"
           }
+          style={{ transform: `translateY(${offsetY * 0.1}px)` }}
         ></div>
       </div>
 
