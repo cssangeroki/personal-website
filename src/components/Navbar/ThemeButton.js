@@ -15,7 +15,7 @@ function ThemeButton() {
     <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
       <GlobalStyles />
       <div className="button-container">
-        <p className="navbar-text">Theme</p>
+        <p className="navbar-text">theme</p>
         <label className="switch">
           <input type="checkbox" />
           <span className="slider" onClick={themeToggler} />
@@ -24,5 +24,4 @@ function ThemeButton() {
     </ThemeProvider>
   );
 }
-
 export default ThemeButton;
