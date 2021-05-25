@@ -34,7 +34,7 @@ function Navbar() {
               smooth={true}
               className="navbar-text"
             >
-              Home
+              home
             </LinkScroll>
           </li>
           <li>
@@ -44,7 +44,17 @@ function Navbar() {
               smooth={true}
               className="navbar-text"
             >
-              About
+              about
+            </LinkScroll>
+          </li>
+          <li>
+            <LinkScroll
+              to="project"
+              spy={true}
+              smooth={true}
+              className="navbar-text"
+            >
+              projects
             </LinkScroll>
           </li>
           <li>
@@ -54,17 +64,7 @@ function Navbar() {
               smooth={true}
               className="navbar-text"
             >
-              Contact
-            </LinkScroll>
-          </li>
-          <li>
-            <LinkScroll
-              to="service"
-              spy={true}
-              smooth={true}
-              className="navbar-text"
-            >
-              Service
+              contact
             </LinkScroll>
           </li>
           <li>
