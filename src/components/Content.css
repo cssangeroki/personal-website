@@ -1,0 +1,15 @@
+.home-style {
+  height: 500px;
+  padding-top: 200px;
+  display: flex;
+  justify-content: center;
+}
+.about-style {
+  height: 500px;
+}
+.contact-style {
+  height: 500px;
+}
+.service-style {
+  height: 500px;
+}
