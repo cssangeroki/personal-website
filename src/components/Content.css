@@ -39,12 +39,12 @@
   font-size: 30px;
   width: 50vw;
   padding-right: 100px;
+  padding-top: 20vh;
 }
 
 .about-text-mobile {
   font-size: 25px;
   width: 80vw;
-  padding-right: 0px;
 }
 
 .picture-light {
@@ -58,22 +58,23 @@
 .picture-dark {
   background-color: transparent;
   background-image: url(../assets/brown_dark.jpg);
+  z-index: -1;
   background-position-y: -80px;
   background-size: 100%;
   background-repeat: no-repeat;
-  margin-top: 10vh;
+
   width: 400px;
   height: 600px;
   overflow: hidden;
 }
 
 .picture-dark-mobile {
-  width: 100vw;
+  width: 110vw;
 }
 
 .project-style {
   padding-top: 10vh;
-
+  margin-top: 40vh;
   height: 500px;
 }
 
@@ -84,13 +85,12 @@
 }
 
 .project-header {
-  padding-top: 20vh;
   font-size: 50px;
   padding-right: 25vw;
   text-align: end;
 }
 .contact-style {
-  margin-top: 10vh;
+  margin-top: 15vh;
   padding-top: 20vh;
   height: 800px;
 }

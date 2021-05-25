@@ -10,4 +10,9 @@ html {
 
 body {
   background-color: #f0ead6;
+  position: relative;
+}
+html,
+body {
+  overflow-x: hidden;
 }
