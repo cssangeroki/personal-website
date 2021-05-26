@@ -14,8 +14,6 @@ import Card from "./Card";
 function Content(props) {
   const [offsetY, setOffsetY] = useState(0);
   const handleScroll = () => setOffsetY(window.pageYOffset);
-  const lorem =
-    "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis adipisci nisi fugit dolorem, pariatur natus, veritatis sequi soluta animi quia eum corrupti, necessitatibus totam alias reiciendis tenetur deleniti ullam aliquid!";
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
