@@ -32,8 +32,9 @@ export const GlobalStyles = createGlobalStyle`
       color: ${(props) => props.theme.body}
     }
 
-    .picture{
-      
+    .card-container{
+      border: 7px solid ${(props) => props.theme.fontColor};
+      background-color: ${(props) => props.theme.body};
     }
     
 

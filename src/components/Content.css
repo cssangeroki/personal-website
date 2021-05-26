@@ -27,11 +27,13 @@
 
 .about-header {
   font-size: 50px;
+  padding-left: 5vw;
   background-color: transparent;
 }
 
 .about-header-mobile {
-  text-align: center;
+  background-color: transparent;
+  width: 100vw;
 }
 
 .about-text {
@@ -44,7 +46,9 @@
 
 .about-text-mobile {
   font-size: 25px;
-  width: 80vw;
+  width: 100vw;
+  background-color: transparent;
+  margin-left: 10vw;
 }
 
 .picture-light {
@@ -75,13 +79,26 @@
 .project-style {
   padding-top: 10vh;
   margin-top: 40vh;
-  height: 500px;
 }
 
-.project-text {
-  text-align: end;
-  padding-right: 15vw;
-  font-size: 30px;
+.project-style-mobile {
+  margin-top: 0;
+}
+.project-cards {
+  background-color: transparent;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  align-content: flex-start;
+  flex-wrap: wrap;
+  margin-top: -30px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.project-cards-mobile {
+  flex-direction: column;
+  align-items: center;
 }
 
 .project-header {
@@ -89,8 +106,63 @@
   padding-right: 25vw;
   text-align: end;
 }
+
+.project-header-mobile {
+  padding-right: 10vw;
+}
+
+.contact-header {
+  font-size: 50px;
+  text-align: center;
+  transform: translateX(-10vw);
+}
 .contact-style {
-  margin-top: 15vh;
-  padding-top: 20vh;
-  height: 800px;
+  margin-top: 25vh;
+  padding-top: 15vh;
+}
+
+.contact-style-mobile {
+  margin-top: 10vh;
+}
+
+.contact-text {
+  display: flex;
+  flex-direction: column;
+  font-size: 30px;
+  background-color: transparent;
+  height: 50vh;
+  justify-content: space-evenly;
+  padding-left: 20vw;
+}
+
+.contact-text-mobile {
+  padding-left: 2vw;
+  font-size: 25px;
+}
+
+.social-icon {
+  transform: translateY(11px);
+  margin-right: 15px;
+}
+
+.copyright p {
+  font-size: 15px;
+  text-align: right;
+}
+
+.copyright {
+  display: flex;
+  width: 100vw;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 5vw;
+}
+
+.copyright-icon {
+  margin-right: 5px;
+}
+
+a {
+  text-decoration: none;
+  cursor: pointer;
 }

@@ -2,15 +2,29 @@ import React, { useState, useEffect } from "react";
 import "./Content.css";
 import Typewriter from "typewriter-effect";
 import { isMobile } from "react-device-detect";
+import {
+  AiOutlineGithub,
+  AiOutlineInstagram,
+  AiOutlineLinkedin,
+  AiOutlineCopyright,
+} from "react-icons/ai";
+import { HiOutlineMail } from "react-icons/hi";
+import Card from "./Card";
 
 function Content(props) {
   const [offsetY, setOffsetY] = useState(0);
   const handleScroll = () => setOffsetY(window.pageYOffset);
+  const lorem =
+    "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis adipisci nisi fugit dolorem, pariatur natus, veritatis sequi soluta animi quia eum corrupti, necessitatibus totam alias reiciendis tenetur deleniti ullam aliquid!";
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  function checkOffset() {
+    console.log(offsetY);
+  }
 
   return (
     <div>
@@ -45,9 +59,9 @@ function Content(props) {
           >
             about me.
           </h1>
-          hey! my name's claudio and i'm a software engineer. i have a
-          bachelor's in computer science and i am extremely passionate about
-          machine learning and artificial intelligence.
+          hey! my name's claudio and i'm a software engineer. i am extremely
+          passionate about machine learning and artificial intelligence.
+          currently knee-deep in building custom mechanical keyboards.
         </div>
         <div
           className={
@@ -56,26 +70,114 @@ function Content(props) {
           style={{ transform: `translateY(${offsetY * 0.1}px)` }}
         ></div>
       </div>
-
-      <div id="project" className="project-style">
+      <div
+        id="project"
+        className={
+          isMobile ? "project-style project-style-mobile" : "project-style"
+        }
+      >
         <div>
-          <h1 className="project-header">projects.</h1>
-          <div className="project-text"></div>
+          <h1
+            className={
+              isMobile
+                ? "project-header project-header-mobile"
+                : "project-header"
+            }
+            onClick={checkOffset}
+          >
+            top projects.
+          </h1>
+          <div
+            className={
+              isMobile ? "project-cards project-cards-mobile" : "project-cards"
+            }
+          >
+            <Card
+              title="pacman ai"
+              body={
+                "implemented searches such as bfs, dfs, and a* search to pacman and created various ai agents"
+              }
+              anim={
+                offsetY >= 1676
+                  ? { transform: `0px` }
+                  : { transform: `translateX(${-167.6 + offsetY * 0.1}px)` }
+              }
+              route={
+                "https://github.com/cssangeroki/CSE140-Artificial-Intelligence"
+              }
+            />
+            <Card
+              title="yelp review"
+              body={
+                "using various machine learning models, we were able to predict the stars a person will give after a review is written"
+              }
+              anim={
+                offsetY >= 1676
+                  ? { transform: `0px` }
+                  : { transform: `translateY(${-83.8 + offsetY * 0.05}px)` }
+              }
+              route={"https://github.com/cssangeroki/CSE142-Machine-Learning"}
+            />
+            <Card
+              title="rendezvous"
+              body={
+                "created a mobile app with flutter in order to find a midpoint between users and look at surrounding hotspots in yelp"
+              }
+              anim={
+                offsetY >= 1676
+                  ? { transform: `0px` }
+                  : { transform: `translateY(${167.6 - offsetY * 0.1}px)` }
+              }
+              route={"https://github.com/cssangeroki/Rendezvous"}
+            />
+            <Card
+              title="game ai"
+              body={
+                "created various ai agents in order to complete goals given in each project"
+              }
+              anim={
+                offsetY >= 1676
+                  ? { transform: `0px` }
+                  : { transform: `translateX(${83.8 - offsetY * 0.05}px)` }
+              }
+              route={"https://github.com/cssangeroki/CMPM146-Game-AI"}
+            />
+          </div>
         </div>
       </div>
-
-      <div id="contact" className="contact-style">
+      <div
+        id="contact"
+        className={
+          isMobile ? "contact-style contact-style-mobile" : "contact-style"
+        }
+      >
         <div>
-          <h1 className="contact-header">contact section</h1>
-          <div className="contact-text">
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Velit
-            voluptate sapiente possimus? Magni porro, consectetur excepturi
-            quibusdam amet recusandae reiciendis error assumenda labore sed
-            voluptates in deleniti, atque doloribus explicabo! Lorem ipsum dolor
-            sit, amet consectetur adipisicing elit. Accusantium aliquid vitae
-            reiciendis in suscipit possimus dolore recusandae eius iusto,
-            pariatur odit veniam, maxime ducimus sequi adipisci quam ipsa?
-            Delectus, quos.
+          <h1 className="contact-header">socials.</h1>
+          <div
+            className={
+              isMobile ? "contact-text contact-text-mobile" : "contact-text"
+            }
+          >
+            <a href="https://www.instagram.com/claudioksnd/">
+              <AiOutlineInstagram size="1.5em" className="social-icon" />
+              Instagram
+            </a>
+            <a href="https://www.linkedin.com/in/csangeroki/">
+              <AiOutlineLinkedin size="1.5em" className="social-icon" />
+              LinkedIn
+            </a>
+            <a href="https://github.com/cssangeroki">
+              <AiOutlineGithub size="1.5em" className="social-icon" />
+              Github
+            </a>
+            <a href="mailto:claudkoes@gmail.com">
+              <HiOutlineMail size="1.5em" className="social-icon" />
+              claudkoes@gmail.com
+            </a>
+          </div>
+          <div className="copyright">
+            <AiOutlineCopyright className="copyright-icon" />
+            <p>2021 Claudio Koesnadi</p>
           </div>
         </div>
       </div>
