@@ -11,7 +11,7 @@ function Card(props) {
       <div className="card-body">
         <p>{props.body}</p>
       </div>
-      <a href={props.route} target="_blank">
+      <a href={props.route} target="_blank" rel="noreferrer">
         <AiOutlineGithub className="card-icon" size="4em" />
       </a>
     </div>
