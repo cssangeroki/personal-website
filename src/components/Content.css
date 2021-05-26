@@ -79,7 +79,6 @@
 .project-style {
   padding-top: 10vh;
   margin-top: 40vh;
-  height: 500px;
 }
 
 .project-style-mobile {
@@ -123,7 +122,7 @@
 }
 
 .contact-style-mobile {
-  margin-top: 130vh;
+  margin-top: 10vh;
 }
 
 .contact-text {
