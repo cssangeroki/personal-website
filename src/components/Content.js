@@ -66,7 +66,7 @@ function Content(props) {
           className={
             isMobile ? "picture-dark picture-dark-mobile" : "picture-dark"
           }
-          style={{ transform: `translateY(${offsetY * 0.15}px)` }}
+          style={{ transform: `translateY(${10 + offsetY * 0.15}px)` }}
         ></div>
       </div>
       <div
@@ -83,6 +83,11 @@ function Content(props) {
                 : "project-header"
             }
             onClick={checkOffset}
+            style={
+              offsetY >= 1394
+                ? { transform: `0px` }
+                : { transform: `translateY(${-210 + offsetY * 0.15}px)` }
+            }
           >
             top projects.
           </h1>
@@ -97,9 +102,9 @@ function Content(props) {
                 "implemented searches such as bfs, dfs, and a* search to pacman and created various ai agents"
               }
               anim={
-                offsetY >= 1676
+                offsetY >= 1400
                   ? { transform: `0px` }
-                  : { transform: `translateX(${-167.6 + offsetY * 0.1}px)` }
+                  : { transform: `translateX(${-140 + offsetY * 0.1}px)` }
               }
               route={
                 "https://github.com/cssangeroki/CSE140-Artificial-Intelligence"
@@ -111,9 +116,9 @@ function Content(props) {
                 "using various machine learning models, we were able to predict the stars a person will give after a review is written"
               }
               anim={
-                offsetY >= 1676
+                offsetY >= 1400
                   ? { transform: `0px` }
-                  : { transform: `translateY(${-83.8 + offsetY * 0.05}px)` }
+                  : { transform: `translateY(${-70 + offsetY * 0.05}px)` }
               }
               route={"https://github.com/cssangeroki/CSE142-Machine-Learning"}
             />
@@ -123,9 +128,9 @@ function Content(props) {
                 "created a mobile app with flutter in order to find a midpoint between users and look at surrounding hotspots in yelp"
               }
               anim={
-                offsetY >= 1676
+                offsetY >= 1400
                   ? { transform: `0px` }
-                  : { transform: `translateY(${167.6 - offsetY * 0.1}px)` }
+                  : { transform: `translateY(${140 - offsetY * 0.1}px)` }
               }
               route={"https://github.com/cssangeroki/Rendezvous"}
             />
@@ -135,9 +140,9 @@ function Content(props) {
                 "created various ai agents in order to complete goals given in each project"
               }
               anim={
-                offsetY >= 1676
+                offsetY >= 1400
                   ? { transform: `0px` }
-                  : { transform: `translateX(${83.8 - offsetY * 0.05}px)` }
+                  : { transform: `translateX(${70 - offsetY * 0.05}px)` }
               }
               route={"https://github.com/cssangeroki/CMPM146-Game-AI"}
             />
@@ -164,9 +169,9 @@ function Content(props) {
               target="_blank"
               rel="noreferrer"
               style={
-                offsetY >= 2376
+                offsetY >= 2300
                   ? { transform: `0px` }
-                  : { transform: `translateX(${118.8 - offsetY * 0.05}px)` }
+                  : { transform: `translateX(${115 - offsetY * 0.05}px)` }
               }
             >
               <AiOutlineInstagram size="1.5em" className="social-icon" />
@@ -177,9 +182,9 @@ function Content(props) {
               target="_blank"
               rel="noreferrer"
               style={
-                offsetY >= 2376
+                offsetY >= 2300
                   ? { transform: `0px` }
-                  : { transform: `translateX(${237.6 - offsetY * 0.1}px)` }
+                  : { transform: `translateX(${230 - offsetY * 0.1}px)` }
               }
             >
               <AiOutlineLinkedin size="1.5em" className="social-icon" />
@@ -190,9 +195,9 @@ function Content(props) {
               target="_blank"
               rel="noreferrer"
               style={
-                offsetY >= 2376
+                offsetY >= 2300
                   ? { transform: `0px` }
-                  : { transform: `translateX(${356.4 - offsetY * 0.15}px)` }
+                  : { transform: `translateX(${345 - offsetY * 0.15}px)` }
               }
             >
               <AiOutlineGithub size="1.5em" className="social-icon" />
@@ -203,9 +208,9 @@ function Content(props) {
               target="_blank"
               rel="noreferrer"
               style={
-                offsetY >= 2376
+                offsetY >= 2300
                   ? { transform: `0px` }
-                  : { transform: `translateX(${475.2 - offsetY * 0.2}px)` }
+                  : { transform: `translateX(${460 - offsetY * 0.2}px)` }
               }
             >
               <HiOutlineMail size="1.5em" className="social-icon" />
@@ -216,9 +221,9 @@ function Content(props) {
               target="_blank"
               rel="noreferrer"
               style={
-                offsetY >= 2376
+                offsetY >= 2300
                   ? { transform: `0px` }
-                  : { transform: `translateX(${594 - offsetY * 0.25}px)` }
+                  : { transform: `translateX(${575 - offsetY * 0.25}px)` }
               }
             >
               <AiOutlineFileWord size="1.5em" className="social-icon" />
