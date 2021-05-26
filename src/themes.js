@@ -37,5 +37,7 @@ export const GlobalStyles = createGlobalStyle`
       background-color: ${(props) => props.theme.body};
     }
     
-
+    .burger-container{
+      background-color: ${(props) => props.theme.body};
+    }
 `;

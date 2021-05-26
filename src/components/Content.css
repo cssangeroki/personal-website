@@ -28,25 +28,34 @@
 .about-header {
   font-size: 50px;
   padding-left: 5vw;
+  margin-top: 15vh;
   background-color: transparent;
 }
 
 .about-header-mobile {
   background-color: transparent;
-  margin-top: 20vh;
+
   width: 100vw;
 }
 
 .about-text {
   background-color: transparent;
-  font-size: 30px;
+  font-size: 20px;
   width: 50vw;
   padding-right: 100px;
   padding-top: 20vh;
 }
 
+.about-text-2 {
+  margin-top: 30px;
+}
+
+.about-social {
+  text-decoration: underline;
+}
+
 .about-text-mobile {
-  font-size: 25px;
+  font-size: 20px;
   width: 100vw;
   background-color: transparent;
   margin-left: 10vw;
@@ -112,21 +121,20 @@
   padding-right: 10vw;
 }
 
-.contact-header {
+.social-header {
   font-size: 50px;
   text-align: center;
   transform: translateX(-10vw);
 }
-.contact-style {
-  margin-top: 25vh;
-  padding-top: 15vh;
+.social-style {
+  margin-top: 40vh;
 }
 
-.contact-style-mobile {
+.social-style-mobile {
   margin-top: 10vh;
 }
 
-.contact-text {
+.social-text {
   display: flex;
   flex-direction: column;
   font-size: 30px;
@@ -136,7 +144,7 @@
   padding-left: 20vw;
 }
 
-.contact-text-mobile {
+.social-text-mobile {
   padding-left: 2vw;
   font-size: 25px;
 }
@@ -146,21 +154,25 @@
   margin-right: 15px;
 }
 
-.copyright p {
+.copyright-text {
   font-size: 15px;
   text-align: right;
 }
 
 .copyright {
-  display: flex;
   width: 100vw;
-  justify-content: flex-end;
-  align-items: center;
   padding: 5vw;
 }
 
+.copyright-text-2 {
+  font-size: 15px;
+  text-align: right;
+  margin-top: -5px;
+}
 .copyright-icon {
   margin-right: 5px;
+  text-align: right;
+  transform: translateY(2px);
 }
 
 a {
