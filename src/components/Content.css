@@ -31,7 +31,8 @@
 }
 
 .about-header-mobile {
-  text-align: center;
+  background-color: transparent;
+  width: 100vw;
 }
 
 .about-text {
@@ -44,7 +45,9 @@
 
 .about-text-mobile {
   font-size: 25px;
-  width: 80vw;
+  width: 100vw;
+  background-color: transparent;
+  margin-left: 10vw;
 }
 
 .picture-light {
@@ -77,11 +80,21 @@
   margin-top: 40vh;
   height: 500px;
 }
+.project-cards {
+  background-color: transparent;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  align-content: flex-start;
+  flex-wrap: wrap;
+  margin-top: -30px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
 
-.project-text {
-  text-align: end;
-  padding-right: 15vw;
-  font-size: 30px;
+.project-cards-mobile {
+  flex-direction: column;
+  align-items: center;
 }
 
 .project-header {
