@@ -34,7 +34,7 @@ function Navbar() {
               smooth={true}
               className="navbar-text"
             >
-              home
+              home.
             </LinkScroll>
           </li>
           <li>
@@ -44,7 +44,7 @@ function Navbar() {
               smooth={true}
               className="navbar-text"
             >
-              about
+              about.
             </LinkScroll>
           </li>
           <li>
@@ -54,7 +54,7 @@ function Navbar() {
               smooth={true}
               className="navbar-text"
             >
-              projects
+              projects.
             </LinkScroll>
           </li>
           <li>
@@ -64,7 +64,7 @@ function Navbar() {
               smooth={true}
               className="navbar-text"
             >
-              contact
+              socials.
             </LinkScroll>
           </li>
           <li>

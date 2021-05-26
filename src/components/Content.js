@@ -2,6 +2,13 @@ import React, { useState, useEffect } from "react";
 import "./Content.css";
 import Typewriter from "typewriter-effect";
 import { isMobile } from "react-device-detect";
+import {
+  AiOutlineGithub,
+  AiOutlineInstagram,
+  AiOutlineLinkedin,
+  AiOutlineCopyright,
+} from "react-icons/ai";
+import { HiOutlineMail } from "react-icons/hi";
 import Card from "./Card";
 
 function Content(props) {
@@ -52,9 +59,9 @@ function Content(props) {
           >
             about me.
           </h1>
-          hey! my name's claudio and i'm a software engineer. i have a
-          bachelor's in computer science and i am extremely passionate about
-          machine learning and artificial intelligence.
+          hey! my name's claudio and i'm a software engineer. i am extremely
+          passionate about machine learning and artificial intelligence.
+          currently knee-deep in building custom mechanical keyboards.
         </div>
         <div
           className={
@@ -63,11 +70,22 @@ function Content(props) {
           style={{ transform: `translateY(${offsetY * 0.1}px)` }}
         ></div>
       </div>
-
-      <div id="project" className="project-style">
+      <div
+        id="project"
+        className={
+          isMobile ? "project-style project-style-mobile" : "project-style"
+        }
+      >
         <div>
-          <h1 className="project-header" onClick={checkOffset}>
-            projects.
+          <h1
+            className={
+              isMobile
+                ? "project-header project-header-mobile"
+                : "project-header"
+            }
+            onClick={checkOffset}
+          >
+            top projects.
           </h1>
           <div
             className={
@@ -82,7 +100,7 @@ function Content(props) {
               anim={
                 offsetY >= 1676
                   ? { transform: `0px` }
-                  : { transform: `translateX(${-670.4 + offsetY * 0.4}px)` }
+                  : { transform: `translateX(${-167.6 + offsetY * 0.1}px)` }
               }
               route={
                 "https://github.com/cssangeroki/CSE140-Artificial-Intelligence"
@@ -96,7 +114,7 @@ function Content(props) {
               anim={
                 offsetY >= 1676
                   ? { transform: `0px` }
-                  : { transform: `translateX(${-1005.6 + offsetY * 0.6}px)` }
+                  : { transform: `translateY(${-83.8 + offsetY * 0.05}px)` }
               }
               route={"https://github.com/cssangeroki/CSE142-Machine-Learning"}
             />
@@ -108,7 +126,7 @@ function Content(props) {
               anim={
                 offsetY >= 1676
                   ? { transform: `0px` }
-                  : { transform: `translateX(${-1340.8 + offsetY * 0.8}px)` }
+                  : { transform: `translateY(${167.6 - offsetY * 0.1}px)` }
               }
               route={"https://github.com/cssangeroki/Rendezvous"}
             />
@@ -120,18 +138,47 @@ function Content(props) {
               anim={
                 offsetY >= 1676
                   ? { transform: `0px` }
-                  : { transform: `translateX(${-1676 + offsetY * 1}px)` }
+                  : { transform: `translateX(${83.8 - offsetY * 0.05}px)` }
               }
               route={"https://github.com/cssangeroki/CMPM146-Game-AI"}
             />
           </div>
         </div>
       </div>
-
-      <div id="contact" className="contact-style">
+      <div
+        id="contact"
+        className={
+          isMobile ? "contact-style contact-style-mobile" : "contact-style"
+        }
+      >
         <div>
-          <h1 className="contact-header">contact section</h1>
-          <div className="contact-text">{lorem}</div>
+          <h1 className="contact-header">socials.</h1>
+          <div
+            className={
+              isMobile ? "contact-text contact-text-mobile" : "contact-text"
+            }
+          >
+            <a href="https://www.instagram.com/claudioksnd/">
+              <AiOutlineInstagram size="1.5em" className="social-icon" />
+              Instagram
+            </a>
+            <a href="https://www.linkedin.com/in/csangeroki/">
+              <AiOutlineLinkedin size="1.5em" className="social-icon" />
+              LinkedIn
+            </a>
+            <a href="https://github.com/cssangeroki">
+              <AiOutlineGithub size="1.5em" className="social-icon" />
+              Github
+            </a>
+            <a href="mailto:claudkoes@gmail.com">
+              <HiOutlineMail size="1.5em" className="social-icon" />
+              claudkoes@gmail.com
+            </a>
+          </div>
+          <div className="copyright">
+            <AiOutlineCopyright className="copyright-icon" />
+            <p>2021 Claudio Koesnadi</p>
+          </div>
         </div>
       </div>
     </div>
