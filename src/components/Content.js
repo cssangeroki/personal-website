@@ -10,6 +10,7 @@ import {
   AiOutlineFileWord,
 } from "react-icons/ai";
 import { HiOutlineMail } from "react-icons/hi";
+import { Link as LinkScroll } from "react-scroll";
 import Card from "./Card";
 
 function Content(props) {
@@ -59,8 +60,23 @@ function Content(props) {
             about me.
           </h1>
           hey! my name's claudio and i'm a software engineer. i am extremely
-          passionate about machine learning and artificial intelligence.
-          currently knee-deep in building custom mechanical keyboards.
+          passionate about machine learning and artificial intelligence with a
+          side interest in full-stack engineering. my hobbies include futsal,
+          photography, and building too many custom mechanical keyboards i don't
+          need.
+          <div className="about-text-2">
+            i love talking to new people and feel free to reach out and talk to
+            me on my&nbsp;
+            <LinkScroll
+              className="about-social"
+              to="social"
+              spy={true}
+              smooth={true}
+            >
+              socials
+            </LinkScroll>
+            !
+          </div>
         </div>
         <div
           className={
@@ -150,18 +166,18 @@ function Content(props) {
         </div>
       </div>
       <div
-        id="contact"
+        id="social"
         className={
-          isMobile ? "contact-style contact-style-mobile" : "contact-style"
+          isMobile ? "social-style social-style-mobile" : "social-style"
         }
       >
         <div>
-          <h1 className="contact-header" onClick={checkOffset}>
+          <h1 className="social-header" onClick={checkOffset}>
             socials.
           </h1>
           <div
             className={
-              isMobile ? "contact-text contact-text-mobile" : "contact-text"
+              isMobile ? "social-text social-text-mobile" : "social-text"
             }
           >
             <a
@@ -227,7 +243,7 @@ function Content(props) {
               }
             >
               <AiOutlineFileWord size="1.5em" className="social-icon" />
-              my resumé
+              My Resumé
             </a>
           </div>
           <div
@@ -239,7 +255,7 @@ function Content(props) {
             }
           >
             <AiOutlineCopyright className="copyright-icon" />
-            <p>2021 Claudio Koesnadi</p>
+            <p>2021 Claudio Koesnadi. Built with React.js</p>
           </div>
         </div>
       </div>

@@ -15,13 +15,15 @@ function Navbar() {
     <div className="navbar-wrap">
       <div className="navbar">
         <Link to="#" className="menu-bars">
-          <Hamburger
-            rounded
-            toggled={isOpen}
-            toggle={setOpen}
-            onToggle={showSidebar}
-            className="burger-icon"
-          ></Hamburger>
+          <div className="burger-container">
+            <Hamburger
+              rounded
+              toggled={isOpen}
+              toggle={setOpen}
+              onToggle={showSidebar}
+              className="burger-icon"
+            ></Hamburger>
+          </div>
         </Link>
       </div>
       <nav className={sidebar ? "nav-menu active" : "nav-menu"}>
@@ -59,7 +61,7 @@ function Navbar() {
           </li>
           <li>
             <LinkScroll
-              to="contact"
+              to="social"
               spy={true}
               smooth={true}
               className="navbar-text"
