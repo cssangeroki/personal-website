@@ -7,6 +7,7 @@ import {
   AiOutlineInstagram,
   AiOutlineLinkedin,
   AiOutlineCopyright,
+  AiOutlineFileWord,
 } from "react-icons/ai";
 import { HiOutlineMail } from "react-icons/hi";
 import Card from "./Card";
@@ -65,7 +66,7 @@ function Content(props) {
           className={
             isMobile ? "picture-dark picture-dark-mobile" : "picture-dark"
           }
-          style={{ transform: `translateY(${offsetY * 0.1}px)` }}
+          style={{ transform: `translateY(${offsetY * 0.15}px)` }}
         ></div>
       </div>
       <div
@@ -150,30 +151,78 @@ function Content(props) {
         }
       >
         <div>
-          <h1 className="contact-header">socials.</h1>
+          <h1 className="contact-header" onClick={checkOffset}>
+            socials.
+          </h1>
           <div
             className={
               isMobile ? "contact-text contact-text-mobile" : "contact-text"
             }
           >
-            <a href="https://www.instagram.com/claudioksnd/">
+            <a
+              href="https://www.instagram.com/itsclaud.io/"
+              style={
+                offsetY >= 2376
+                  ? { transform: `0px` }
+                  : { transform: `translateX(${118.8 - offsetY * 0.05}px)` }
+              }
+            >
               <AiOutlineInstagram size="1.5em" className="social-icon" />
               Instagram
             </a>
-            <a href="https://www.linkedin.com/in/csangeroki/">
+            <a
+              href="https://www.linkedin.com/in/csangeroki/"
+              style={
+                offsetY >= 2376
+                  ? { transform: `0px` }
+                  : { transform: `translateX(${237.6 - offsetY * 0.1}px)` }
+              }
+            >
               <AiOutlineLinkedin size="1.5em" className="social-icon" />
               LinkedIn
             </a>
-            <a href="https://github.com/cssangeroki">
+            <a
+              href="https://github.com/cssangeroki"
+              style={
+                offsetY >= 2376
+                  ? { transform: `0px` }
+                  : { transform: `translateX(${356.4 - offsetY * 0.15}px)` }
+              }
+            >
               <AiOutlineGithub size="1.5em" className="social-icon" />
               Github
             </a>
-            <a href="mailto:claudkoes@gmail.com">
+            <a
+              href="mailto:claudkoes@gmail.com"
+              style={
+                offsetY >= 2376
+                  ? { transform: `0px` }
+                  : { transform: `translateX(${475.2 - offsetY * 0.2}px)` }
+              }
+            >
               <HiOutlineMail size="1.5em" className="social-icon" />
               claudkoes@gmail.com
             </a>
+            <a
+              href="https://drive.google.com/file/d/18pIo608oXQ9mz1IEuN6Zw_OFKHBUGjbO/view?usp=sharing"
+              style={
+                offsetY >= 2376
+                  ? { transform: `0px` }
+                  : { transform: `translateX(${594 - offsetY * 0.25}px)` }
+              }
+            >
+              <AiOutlineFileWord size="1.5em" className="social-icon" />
+              my resumé
+            </a>
           </div>
-          <div className="copyright">
+          <div
+            className="copyright"
+            style={
+              isMobile
+                ? { transform: `translateY(0px)` }
+                : { transform: `translateY(${500 + offsetY * -0.2}px)` }
+            }
+          >
             <AiOutlineCopyright className="copyright-icon" />
             <p>2021 Claudio Koesnadi</p>
           </div>
