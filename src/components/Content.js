@@ -254,8 +254,11 @@ function Content(props) {
                 : { transform: `translateY(${500 + offsetY * -0.2}px)` }
             }
           >
-            <AiOutlineCopyright className="copyright-icon" />
-            <p>2021 Claudio Koesnadi. Built with React.js</p>
+            <p className="copyright-text">
+              <AiOutlineCopyright className="copyright-icon" />
+              2021 Claudio Koesnadi.
+            </p>
+            <p className="copyright-text-2">Built with React.js</p>
           </div>
         </div>
       </div>

@@ -154,21 +154,25 @@
   margin-right: 15px;
 }
 
-.copyright p {
+.copyright-text {
   font-size: 15px;
   text-align: right;
 }
 
 .copyright {
-  display: flex;
   width: 100vw;
-  justify-content: flex-end;
-  align-items: center;
   padding: 5vw;
 }
 
+.copyright-text-2 {
+  font-size: 15px;
+  text-align: right;
+  margin-top: -5px;
+}
 .copyright-icon {
   margin-right: 5px;
+  text-align: right;
+  transform: translateY(2px);
 }
 
 a {
