@@ -161,6 +161,8 @@ function Content(props) {
           >
             <a
               href="https://www.instagram.com/itsclaud.io/"
+              target="_blank"
+              rel="noreferrer"
               style={
                 offsetY >= 2376
                   ? { transform: `0px` }
@@ -172,6 +174,8 @@ function Content(props) {
             </a>
             <a
               href="https://www.linkedin.com/in/csangeroki/"
+              target="_blank"
+              rel="noreferrer"
               style={
                 offsetY >= 2376
                   ? { transform: `0px` }
@@ -183,6 +187,8 @@ function Content(props) {
             </a>
             <a
               href="https://github.com/cssangeroki"
+              target="_blank"
+              rel="noreferrer"
               style={
                 offsetY >= 2376
                   ? { transform: `0px` }
@@ -194,6 +200,8 @@ function Content(props) {
             </a>
             <a
               href="mailto:claudkoes@gmail.com"
+              target="_blank"
+              rel="noreferrer"
               style={
                 offsetY >= 2376
                   ? { transform: `0px` }
@@ -205,6 +213,8 @@ function Content(props) {
             </a>
             <a
               href="https://drive.google.com/file/d/18pIo608oXQ9mz1IEuN6Zw_OFKHBUGjbO/view?usp=sharing"
+              target="_blank"
+              rel="noreferrer"
               style={
                 offsetY >= 2376
                   ? { transform: `0px` }
