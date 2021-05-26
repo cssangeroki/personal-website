@@ -7,9 +7,10 @@
 html {
   font-family: "Roboto Mono", monospace;
   overflow-x: hidden;
+  width: 100vw;
 }
 
 body {
   background-color: #f0ead6;
-  position: relative;
+  overflow-x: hidden;
 }
