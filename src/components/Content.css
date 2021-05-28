@@ -1,10 +1,12 @@
 .home-style {
   height: 100vh;
-  width: 100vw;
+  width: 95vw;
   font-size: 50px;
   display: flex;
+  padding-left: 5vw;
   align-items: center;
   justify-content: center;
+  margin-bottom: 20vh;
 }
 .home-style-mobile {
   font-size: 15px;
@@ -12,6 +14,8 @@
 
 .about-style {
   display: flex;
+  width: 95vw;
+  padding-left: 5vw;
   justify-content: center;
   align-items: center;
   background-color: transparent;
@@ -28,12 +32,12 @@
 .about-header {
   font-size: 50px;
   padding-left: 5vw;
-  margin-top: 15vh;
   background-color: transparent;
 }
 
 .about-header-mobile {
   background-color: transparent;
+  margin-top: 20vh;
   width: 100vw;
 }
 
@@ -42,7 +46,7 @@
   font-size: 20px;
   width: 50vw;
   padding-right: 100px;
-  padding-top: 20vh;
+  padding-top: 15vh;
 }
 
 .about-text-2 {
@@ -75,7 +79,7 @@
   background-position-y: -80px;
   background-size: 100%;
   background-repeat: no-repeat;
-
+  margin-top: -10vh;
   width: 400px;
   height: 600px;
 }
@@ -87,6 +91,8 @@
 .project-style {
   padding-top: 10vh;
   margin-top: 40vh;
+  width: 100vw;
+  overflow-x: hidden;
 }
 
 .project-style-mobile {
@@ -100,8 +106,10 @@
   align-content: flex-start;
   flex-wrap: wrap;
   margin-top: -30px;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding-left: 50px;
+  padding-right: 50px;
+  width: 100vw;
+  margin-bottom: 100px;
 }
 
 .project-cards-mobile {
@@ -125,7 +133,7 @@
   transform: translateX(-10vw);
 }
 .social-style {
-  margin-top: 40vh;
+  margin-top: 25vh;
 }
 
 .social-style-mobile {
@@ -133,6 +141,8 @@
 }
 
 .social-text {
+  max-width: 100vw;
+  overflow-x: hidden;
   display: flex;
   flex-direction: column;
   font-size: 30px;
@@ -152,14 +162,16 @@
   margin-right: 15px;
 }
 
-.copyright-text {
-  font-size: 15px;
-  text-align: right;
-}
-
 .copyright {
   width: 100vw;
   padding: 5vw;
+  padding-top: 0vh;
+}
+
+.copyright-text {
+  overflow-x: hidden;
+  font-size: 15px;
+  text-align: right;
 }
 
 .copyright-text-2 {

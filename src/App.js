@@ -12,12 +12,12 @@ function App() {
   return (
     <div>
       <Router>
-        <Navbar />
+        <Navbar className="navbar-wrapper" />
         <Switch>
           <Route path="/" />
         </Switch>
       </Router>
-      <Content />
+      <Content className="content-wrapper" />
     </div>
   );
 }
