@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Divide as Hamburger } from "hamburger-react";
 import { Link as LinkScroll } from "react-scroll";
+import { isMobile } from "react-device-detect";
 import ThemeButton from "./ThemeButton";
 import "./Navbar.css";
 
@@ -13,7 +14,7 @@ function Navbar() {
 
   return (
     <div className="navbar-wrap">
-      <div className="navbar">
+      <div className={isMobile ? "navbar navbar-mobile" : "navbar"}>
         <Link to="#" className="menu-bars">
           <div className="burger-container">
             <Hamburger

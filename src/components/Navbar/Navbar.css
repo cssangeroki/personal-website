@@ -1,6 +1,7 @@
 .navbar {
   background-color: transparent;
   width: 100vw;
+  overflow-x: hidden;
   position: fixed;
   display: flex;
   justify-content: flex-end;
@@ -10,8 +11,8 @@
   z-index: 10;
 }
 
-.menu-bars {
-  background: none;
+.navbar-mobile {
+  padding-right: 10px;
 }
 
 .burger-container {
@@ -45,8 +46,9 @@
 }
 
 .nav-menu.active {
-  right: 0;
+  right: 0%;
   transition: 350ms;
+  overflow-x: hidden;
 }
 
 .nav-text {
