@@ -1,5 +1,5 @@
 :root {
-    --pixel-size: 3;
+    --pixel-size: 2;
     @media only screen and (max-width: 431px) {
         --pixel-size: 8;
     }
@@ -13,12 +13,21 @@
 }
 
 .character_spritesheet {
-    animation: moveSpritesheet 1s steps(4) infinite;
     width: calc(128px * var(--pixel-size));
     position: absolute;
 }
 
-.pixelart {
+.movement_speed_fast {
+    animation: moveSpritesheet 0.2s steps(4) infinite;
+}
+.movement_speed_normal {
+    animation: moveSpritesheet 0.4s steps(4) infinite;
+}
+.movement_speed_slow {
+    animation: moveSpritesheet 2s steps(4) infinite;
+}
+
+.pixel_art {
     image-rendering: pixelated;
 }
 
@@ -30,6 +39,9 @@
 }
 .face-left {
     top: calc(-96px * var(--pixel-size));
+}
+.face-idle {
+    top: calc(-128px * var(--pixel-size));
 }
 
 

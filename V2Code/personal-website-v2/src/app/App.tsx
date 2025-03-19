@@ -1,10 +1,10 @@
 import './App.css'
-import DuckCursor from './components/DuckCursor/duck_cursor.index'
+import HomePage from './pages/HomePage/HomePage'
 
 function App() {
   return (
     <div>
-      <DuckCursor/>
+      <HomePage></HomePage>
     </div>
   )
 }
