@@ -1,5 +1,5 @@
 import { useReducer } from "react";
-import './HomePage.css'; // For page-specific styling
+import './HomePage.scss'; // For page-specific styling
 import DuckCursor from "../../components/DuckCursor/duck_cursor.index";
 import { duckCursorInitialState, followCoordinateReducer, FollowCursorActions, FollowCursorContext } from "../../components/DuckCursor/context/duck_cursor.contexts";
 
@@ -22,7 +22,7 @@ const HomePage = () => {
                             <li>Feature 3</li>
                             <button onClick={() => {
                                 dispatch({ type: FollowCursorActions.ToggleCursorFollow });
-                                dispatch({ type: FollowCursorActions.SetTargetCoordinate, payload: {x: getRandomInt(1000), y: getRandomInt(800)} });
+                                dispatch({ type: FollowCursorActions.SetTargetCoordinate, payload: {x: getRandomInt(1000), y: 2000} });
                                 }}>
                                 {state.followCursor ? "Stop Cursor Animation" : "Start Cursor Animation"}
                             </button>

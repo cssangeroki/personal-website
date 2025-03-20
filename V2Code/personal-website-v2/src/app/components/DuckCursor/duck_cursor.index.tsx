@@ -1,4 +1,4 @@
-import "./duck_cursor.style.css";
+import "./duck_cursor.style.scss";
 import { useMouseMove, useValue, animate, withSpring } from "react-ui-animate";
 import { useEffect, useReducer, useRef } from "react";
 import { Directions, DuckCursorActions, Speeds, useFollowCursorContext } from "./context/duck_cursor.contexts";
@@ -43,7 +43,7 @@ const DuckCursor = () => {
     useEffect(() => {
         if (followCursorContext.state.followCursor) {
             const updateMousePosition = (e: { clientX: any; clientY: any; }) => {
-                dispatch({type: DuckCursorActions.SetTargetPosition, payload: { x: e.clientX, y: e.clientY }});
+                dispatch({type: DuckCursorActions.SetTargetPosition, payload: { x: e.clientX, y: e.clientY + window.scrollY }});
             };
     
             window.addEventListener("mousemove", updateMousePosition);
@@ -64,7 +64,8 @@ const DuckCursor = () => {
         const updatePosition = () => {
             if (divRef.current) {
                 const rect = divRef.current.getBoundingClientRect();
-                dispatch({ type: DuckCursorActions.SetDivPosition, payload: { x: rect.left + (rect.width / 2), y: rect.top + (rect.height / 2) + window.scrollY }});
+                
+                dispatch({ type: DuckCursorActions.SetDivPosition, payload: { x: rect.left + (rect.width / 2), y: rect.top + (rect.height / 2) + window.scrollY}});
             }
             animationFrameId = requestAnimationFrame(updatePosition);
         };
@@ -84,6 +85,7 @@ const DuckCursor = () => {
 
         if (followCursorContext.state.followCursor) {
             const adjustedMouseY = mouseY + scrollY;
+
             COORDINATE_X.value = withSpring(calculateEndPosition(mouseX), animationConfig );
             COORDINATE_Y.value = withSpring(calculateEndPosition(adjustedMouseY), animationConfig);
         }
