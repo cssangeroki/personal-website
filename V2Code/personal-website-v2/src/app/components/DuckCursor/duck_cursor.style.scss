@@ -10,11 +10,13 @@
     height: calc(32px * var(--pixel-size));
     overflow: hidden;
     position: absolute;
+    z-index: 50;
 }
 
 .character_spritesheet {
     width: calc(128px * var(--pixel-size));
     position: absolute;
+    z-index: 50;
 }
 
 .movement_speed_fast {
