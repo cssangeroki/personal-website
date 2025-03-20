@@ -1,4 +1,4 @@
-import { Component } from "react";
+import './retro-filter.style.scss';
 
 interface ImageComponentProps {
     imageUrl: string;
@@ -7,9 +7,11 @@ interface ImageComponentProps {
 
 const RetroFilter: React.FC<ImageComponentProps> = ({ imageUrl, altText }) => {
     return (
-        <div className="retro-filter">
-            <img src={imageUrl} alt={altText}/>
-        </div>
+        <>
+            <div className="size blend blend-yellow vignette">
+                <img src={imageUrl} alt={altText} className="size"/>
+            </div>
+        </>
     );
 };
 
