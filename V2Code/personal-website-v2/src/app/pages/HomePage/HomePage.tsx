@@ -1,31 +1,30 @@
-import { createContext, Dispatch, SetStateAction, useContext, useState } from "react";
+import { createContext, useContext, useReducer, useState } from "react";
 import './HomePage.css'; // For page-specific styling
 import DuckCursor from "../../components/DuckCursor/duck_cursor.index";
+import { duckCursorInitialState, followCoordinateReducer, FollowCursorActions, FollowCursorContext } from "../../components/DuckCursor/context/duck_cursor.contexts";
 
-type AnimationContextType = {
-    animateEnabled: boolean,
-    setAnimateEnabled: Dispatch<SetStateAction<boolean>>
-}
-
-const AnimationContext = createContext<AnimationContextType>({
-    animateEnabled: false,
-    setAnimateEnabled: () => {}
-});
-
-export const useAnimateContext = () => {
-    return useContext(AnimationContext);
-};
+  
+// export interface DuckCursorAnimationState {
+//     cursorFollow: boolean;
+//     targetCoordinate: { x: number; y: number };
+// }
+  
+// export enum AnimationAction {
+//     ToggleCursorFollow,
+//     SetTargetCoordinate
+// }
+  // Initial state
 
 const HomePage = () => {
-    const [animateEnabled, setAnimateEnabled] = useState(false);
+    const [state, dispatch] = useReducer(followCoordinateReducer, duckCursorInitialState);
 
     // Toggle function for the button click
 
     return (
         <div className="home-page">
-            <AnimationContext.Provider value={{ animateEnabled, setAnimateEnabled }}>
+            <FollowCursorContext.Provider value={{ state, dispatch }}>
                 <main className="home-content">
-                    <DuckCursor animateEnabled={animateEnabled}/>
+                    <DuckCursor/>
                     <h1>Welcome to the Home Page</h1>
                     <p>This is a basic React homepage layout with sample content.</p>
 
@@ -35,15 +34,25 @@ const HomePage = () => {
                             <li>Feature 1</li>
                             <li>Feature 2</li>
                             <li>Feature 3</li>
-                            <button onClick={() => setAnimateEnabled((prev) => !prev)}>
-                                {animateEnabled ? "Stop Cursor Animation" : "Start Cursor Animation"}
+                            <button onClick={() => {
+                                dispatch({ type: FollowCursorActions.ToggleCursorFollow });
+                                dispatch({ type: FollowCursorActions.SetTargetCoordinate, payload: {x: getRandomInt(1000), y: 2500} });
+                                }}>
+                                {state.followCursor ? "Stop Cursor Animation" : "Start Cursor Animation"}
                             </button>
+                            <div className="space-for-scrolling">
+
+                            </div>
                         </ul>
                     </section>
                 </main>
-            </AnimationContext.Provider>    
+            </FollowCursorContext.Provider>    
         </div>
     );
 };
+
+const getRandomInt = (max: number) => {
+    return Math.floor(Math.random() * max);
+}
 
 export default HomePage;

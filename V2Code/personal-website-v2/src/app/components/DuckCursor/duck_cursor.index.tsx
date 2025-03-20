@@ -1,47 +1,70 @@
 import "./duck_cursor.style.css";
 import { useMouseMove, useValue, animate, withSpring } from "react-ui-animate";
-import { useEffect, useRef, useState } from "react";
-import { useAnimateContext } from "../../pages/HomePage/HomePage";
+import { useEffect, useReducer, useRef } from "react";
+import { Directions, DuckCursorActions, Speeds, useFollowCursorContext } from "./context/duck_cursor.contexts";
 
 const CURSOR_SIZE = 40;
 
-const DuckCursor = ({ animateEnabled = true }) => {
-    const AnimationContext = useAnimateContext();
+const initialState = {
+    divPosition: { x: 0, y: 0 },
+    targetPosition: { x: 0, y: 0 },
+    direction: Directions.Down,
+    speed: Speeds.Normal,
+    tension: 1
+};
+  
+const reducer = (state: any, action: any) => {
+    switch (action.type) {
+        case DuckCursorActions.SetDivPosition:
+            return { ...state, divPosition: action.payload };
+        case DuckCursorActions.SetTargetPosition:
+            return { ...state, targetPosition: action.payload };
+        case DuckCursorActions.SetDirection:
+            return { ...state, direction: action.payload };
+        case DuckCursorActions.SetSpeed:
+            return { ...state, speed: action.payload };
+        case DuckCursorActions.SetTension:
+            return { ...state, tension: action.payload };
+        default:
+            return state;
+    }
+}
+
+const DuckCursor = () => {
+    const followCursorContext = useFollowCursorContext();
 
     const COORDINATE_X = useValue(0);
     const COORDINATE_Y = useValue(0);
     const divRef = useRef<HTMLDivElement | null>(null);
 
-    const [divPosition, setDivPosition] = useState({ x: 0, y: 0 });
-    const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-    const [direction, setDirection] = useState("down");
-    const [speed, setSpeed] = useState("normal");
-
-    let animationConfig = {
-        tension: 1
-    };
+    const [state, dispatch] = useReducer(reducer, initialState);
 
     // Record Mouse Movement
     useEffect(() => {
-        const updateMousePosition = (e: { clientX: any; clientY: any; }) => {
-            setMousePosition({ x: e.clientX, y: e.clientY });
-        };
+        if (followCursorContext.state.followCursor) {
+            const updateMousePosition = (e: { clientX: any; clientY: any; }) => {
+                dispatch({type: DuckCursorActions.SetTargetPosition, payload: { x: e.clientX, y: e.clientY }});
+            };
+    
+            window.addEventListener("mousemove", updateMousePosition);
+    
+            return () => {
+                window.removeEventListener("mousemove", updateMousePosition);
+            };
+        } else {
+            dispatch({type: DuckCursorActions.SetTargetPosition, payload: { x: followCursorContext.state.targetCoordinate.x, y: followCursorContext.state.targetCoordinate.y }});
+        }
+        
+    }, [followCursorContext.state.followCursor]);
 
-        window.addEventListener("mousemove", updateMousePosition);
-
-        return () => {
-            window.removeEventListener("mousemove", updateMousePosition);
-        };
-    }, []);
-
-    // Get Div's Position
+    // Get Duck Div's Position
     useEffect(() => {
         let animationFrameId: number;
 
         const updatePosition = () => {
             if (divRef.current) {
                 const rect = divRef.current.getBoundingClientRect();
-                setDivPosition({ x: rect.left + (rect.width / 2), y: rect.top + (rect.height / 2)});
+                dispatch({ type: DuckCursorActions.SetDivPosition, payload: { x: rect.left + (rect.width / 2), y: rect.top + (rect.height / 2) + window.scrollY }});
             }
             animationFrameId = requestAnimationFrame(updatePosition);
         };
@@ -49,24 +72,38 @@ const DuckCursor = ({ animateEnabled = true }) => {
         updatePosition(); // Start tracking
 
         return () => cancelAnimationFrame(animationFrameId);
-    }, [animateEnabled]);
+    }, []);
 
-    // Animate Mouse Movement
+    // Follows Mouse Movement
     useMouseMove(({ mouseX, mouseY }) => {
-        if (animateEnabled) {
-            COORDINATE_X.value = withSpring(mouseX - 60 - CURSOR_SIZE / 2, animationConfig);
-            COORDINATE_Y.value = withSpring(mouseY - 30 - CURSOR_SIZE / 2, animationConfig);
+        const scrollY = window.scrollY;
+
+        const animationConfig = {
+            tension: calculateDirectionVectorAndDistance(state.targetPosition, state.divPosition).distance > 1000 ? 8 : 1
+        }
+
+        if (followCursorContext.state.followCursor) {
+            const adjustedMouseY = mouseY + scrollY;
+            COORDINATE_X.value = withSpring(calculateEndPosition(mouseX), animationConfig );
+            COORDINATE_Y.value = withSpring(calculateEndPosition(adjustedMouseY), animationConfig);
         }
     });
 
+    // Heads to target coordinates
+    useEffect(() => {
+        if (!followCursorContext.state.followCursor) {
+            const animationConfig = {
+                tension: calculateDirectionVectorAndDistance(state.targetPosition, state.divPosition).distance > 1000 ? 8 : 1
+            }
+            COORDINATE_X.value = withSpring(calculateEndPosition(state.targetPosition.x), animationConfig);
+            COORDINATE_Y.value = withSpring(calculateEndPosition(state.targetPosition.y), animationConfig);
+        }
+    }, [followCursorContext.state.followCursor, state.targetPosition]);
+
     // Track Div location and Mouse Cursor location
     useEffect(() => {
-        let newDirection = setNewDirection(mousePosition, divPosition, speed, setSpeed);
-
-        if (newDirection != direction) {
-            setDirection(newDirection);
-        }
-    }, [mousePosition, divPosition]); 
+        setNewDirection(state.targetPosition, state.divPosition, state.speed, state.direction, dispatch);
+    }, [state.targetPosition, state.divPosition]);
 
     return (
         <animate.div
@@ -76,46 +113,64 @@ const DuckCursor = ({ animateEnabled = true }) => {
             }}
         >
             <div className="character_mask unselectable" ref = {divRef}>            
-                <img src={`/assets/duck_sprite_with_idle.png`} className={`character_spritesheet pixel_art face-${direction} movement_speed_${speed}`} alt="Desktop_Pet" />
+                <img src={`/assets/duck_sprite_with_idle.png`} className={`character_spritesheet pixel_art face-${state.direction} movement_speed_${state.speed}`} alt="Desktop_Pet" />
             </div>
         </animate.div>
     );
 };
 
-const setNewDirection = (point2: any, point1: any, speed: string, setSpeed: any) => {
-    const directionVector = calculateDirectionVector(point2, point1);
-    const dx = directionVector.x;
-    const dy = directionVector.y;
+// #region Helper Methods
+const setNewDirection = (point2: any, point1: any, speed: Speeds, direction: Directions, dispatch: any) => {
+    const directionVector = calculateDirectionVectorAndDistance(point2, point1);
 
-    const distance = Math.sqrt(dx * dx + dy * dy);
+    const dx = directionVector.dx;
+    const dy = directionVector.dy;
+    const distance = directionVector.distance;
+
     
     if (distance > 700) {
-        if (speed !== "fast") setSpeed("fast");
+        if (speed !== Speeds.Fast) dispatch({ type: DuckCursorActions.SetSpeed, payload: Speeds.Fast});
     } else if (distance >= 200 && distance <= 1300) {
-        if (speed !== "normal") setSpeed("normal");
+        if (speed !== Speeds.Normal) dispatch({ type: DuckCursorActions.SetSpeed, payload: Speeds.Normal});
     } else {
-        if (speed !== "slow") setSpeed("slow");
+        if (speed !== Speeds.Slow) dispatch({ type: DuckCursorActions.SetSpeed, payload: Speeds.Slow});
     }
 
     if (distance < 60) {
-        return "idle";
-    }
-    if (Math.abs(dx) > Math.abs(dy)) {
-        if (dx > 0) return "right" 
-        else return "left";
+        if (direction !== Directions.Idle) dispatch({ type: DuckCursorActions.SetDirection, payload: Directions.Idle});
     } else {
-        if (dy > 0) return "down"
-        else return "up";
+        if (Math.abs(dx) > Math.abs(dy)) {
+            if (dx > 0) {
+                if (direction !== Directions.Right) dispatch({ type: DuckCursorActions.SetDirection, payload: Directions.Right});
+            } else {
+                if (direction !== Directions.Left) dispatch({ type: DuckCursorActions.SetDirection, payload: Directions.Left});
+            }
+        } else {
+            if (dy > 0) {
+                if (direction !== Directions.Down) dispatch({ type: DuckCursorActions.SetDirection, payload: Directions.Down});
+            } else {
+                if (direction !== Directions.Up) dispatch({ type: DuckCursorActions.SetDirection, payload: Directions.Up});
+            }
+        }
     }
+    
 }
 
-const calculateDirectionVector = (point2: any, point1: any) => {
+const calculateEndPosition = (position: number) => {
+    return position - 60 - CURSOR_SIZE / 2;
+}
+
+const calculateDirectionVectorAndDistance = (point2: any, point1: any) => {
     const directionVector = {
         x: point2.x - point1.x,
         y: point2.y - point1.y
     };
 
-    return directionVector;
+    return { 
+        dx: directionVector.x, 
+        dy: directionVector.y, 
+        distance: Math.sqrt(directionVector.x * directionVector.x + directionVector.y * directionVector.y)
+    };
 };
-
+// #endregion
 export default DuckCursor;
