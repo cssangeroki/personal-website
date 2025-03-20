@@ -1,24 +1,10 @@
-import { createContext, useContext, useReducer, useState } from "react";
+import { useReducer } from "react";
 import './HomePage.css'; // For page-specific styling
 import DuckCursor from "../../components/DuckCursor/duck_cursor.index";
 import { duckCursorInitialState, followCoordinateReducer, FollowCursorActions, FollowCursorContext } from "../../components/DuckCursor/context/duck_cursor.contexts";
 
-  
-// export interface DuckCursorAnimationState {
-//     cursorFollow: boolean;
-//     targetCoordinate: { x: number; y: number };
-// }
-  
-// export enum AnimationAction {
-//     ToggleCursorFollow,
-//     SetTargetCoordinate
-// }
-  // Initial state
-
 const HomePage = () => {
     const [state, dispatch] = useReducer(followCoordinateReducer, duckCursorInitialState);
-
-    // Toggle function for the button click
 
     return (
         <div className="home-page">
@@ -36,7 +22,7 @@ const HomePage = () => {
                             <li>Feature 3</li>
                             <button onClick={() => {
                                 dispatch({ type: FollowCursorActions.ToggleCursorFollow });
-                                dispatch({ type: FollowCursorActions.SetTargetCoordinate, payload: {x: getRandomInt(1000), y: 2500} });
+                                dispatch({ type: FollowCursorActions.SetTargetCoordinate, payload: {x: getRandomInt(1000), y: getRandomInt(800)} });
                                 }}>
                                 {state.followCursor ? "Stop Cursor Animation" : "Start Cursor Animation"}
                             </button>

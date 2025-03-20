@@ -24,26 +24,21 @@ export enum DuckCursorActions {
 
 // #region Duck Cursor Context and Reducer functions
 
-export const duckCursorInitialState: DuckCursorAnimationState = {
-    followCursor: false,
-    targetCoordinate: { x: 500, y: 500 },
-};
-
-export type FollowCursorContextType = {
-    state: DuckCursorAnimationState;
-    dispatch: React.Dispatch<FollowCursorActions>;
-}
-
-export interface DuckCursorAnimationState {
-    followCursor: boolean;
-    targetCoordinate: { x: number; y: number };
-}
-  
+// Reducer values and states
 export enum FollowCursorActions {
     ToggleCursorFollow,
     SetTargetCoordinate
 }
+export interface DuckCursorAnimationState {
+    followCursor: boolean;
+    targetCoordinate: { x: number; y: number };
+}
+export const duckCursorInitialState: DuckCursorAnimationState = {
+    followCursor: false,
+    targetCoordinate: { x: 0, y: 0 },
+};
 
+// Reducer for two state values, followCursor & targetCoordinate
 export const followCoordinateReducer = (state: any, action: any): DuckCursorAnimationState => {
     switch (action.type) {
         case FollowCursorActions.ToggleCursorFollow:
@@ -55,11 +50,17 @@ export const followCoordinateReducer = (state: any, action: any): DuckCursorAnim
     }
 }
 
+// Create ContextType and Context
+export type FollowCursorContextType = {
+    state: DuckCursorAnimationState;
+    dispatch: React.Dispatch<FollowCursorActions>;
+}
 export const FollowCursorContext = createContext<FollowCursorContextType>({
     state: duckCursorInitialState,
     dispatch: () => {},
 });
 
+// Exported Method to Use Context
 export const useFollowCursorContext = () => {
     const context = useContext(FollowCursorContext);
     if (!context) {
